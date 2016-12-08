@@ -1,0 +1,149 @@
+<div class="registrationFormHolder" ng-init="initialize()">
+    <span class="success-message" ng-class="{'successfully-saved': profileUpdated == true}">Profile Updated</span>
+    <form class="registration-form" ng-submit="updateUser()" ng-class="{'agent-info' : userIsAgent == true}">
+        <strong class="heading-profile">My Profile.</strong>
+        <div class="input-holder" ng-class="{'error' : errors.fName.length > 0}">
+            <label class="icon-user" for="fName"></label>
+            <input type="text" placeholder="Enter Your First Name" name="fName" id="fName" ng-model="form.data.fName">
+            <span class="border"></span>
+            <span class="error-text">{{errors.fName[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.lName.length > 0}">
+            <label class="icon-user" for="lName"></label>
+            <input type="text" placeholder="Enter Your Last Name" name="lName" id="lName" ng-model="form.data.lName">
+            <span class="border"></span>
+            <span class="error-text">{{errors.lName[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.password.length > 0}">
+            <label class="icon-key" for="pass1"></label>
+            <input type="password" placeholder="Enter Your existing Password" id="pass1" name="password" ng-model="form.data.password" >
+            <span class="border"></span>
+            <span class="error-text">{{errors.password[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.email.length > 0}">
+            <label class="icon-envelope" for="email1"></label>
+            <input type="email" placeholder="Enter Your Email Address" id="email1" name="email" ng-model="form.data.email">
+            <span class="border"></span>
+            <span class="error-text">{{errors.email[0]}}</span>
+        </div>
+        <h1>Contact Information</h1>
+        <div class="input-holder" ng-class="{'error' : errors.phone.length > 0}">
+            <label class="icon-phone" for="phone"></label>
+            <input type="tel" placeholder="Enter Your Phone Number" name="phone" id="phone" ng-model="form.data.phone">
+            <span class="border"></span>
+            <span class="error-text">{{errors.phone[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.mobile.length > 0}">
+            <label class="icon-phone_iphone" for="cell"></label>
+            <input type="tel" placeholder="Enter Your Cell / Mobile Number" name="mobile" id="cell" ng-model="form.data.cell">
+            <span class="border"></span>
+            <span class="error-text">{{errors.mobile[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.fax.length > 0}">
+            <label class="icon-fax" for="fax"></label>
+            <input type="tel" placeholder="Enter Fax Details" name="fax" id="fax" ng-model="form.data.fax">
+            <span class="border"></span>
+            <span class="error-text">{{errors.fax[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.address.length > 0}">
+            <label class="icon-directions" for="address"></label>
+            <input type="text" placeholder="Enter Your Address" name="address" id="address" ng-model="form.data.address">
+            <span class="border"></span>
+            <span class="error-text">{{errors.address[0]}}</span>
+        </div>
+        <div class="input-holder" ng-class="{'error' : errors.zipCode.length > 0}">
+            <label class="icon-file-zip" for="zip"></label>
+            <input type="text" placeholder="Enter Zip Code" name="zipCode" id="zip" ng-model="form.data.zipCode">
+            <span class="border"></span>
+            <span class="error-text">{{errors.zipCode[0]}}</span>
+        </div>
+        <div class="input-holder">
+            <label for="agent" class="agent-check">
+                <input type="checkbox" ng-disabled="userWasAgent == true" ng-model="userIsAgent" class="hidden-checkfield agent-brokerCheckbox" id="agent">
+										<span class="fake-checkbox">
+											<span class="fake-button"></span>
+										</span>
+                <span class="fake-label">Are you an Agent</span>
+            </label>
+        </div>
+        <div class="input-holder full-width" ng-class="{'error' : errors.userRoles.length > 0}">
+            <div class="roles">
+                <a class="role-opener">Other Roles: ({{form.data.userRoles.length}} Selected)</a>
+                <span class="error-text">{{errors.userRoles[0]}}</span>
+                <ul class="role-listing">
+                    <li data-ng-repeat="role in resources.userRoles">
+                        <input checklist-model="form.data.userRoles" checklist-value="role.id" type="checkbox" id="role_{{role.id}}" class="userRole-checkbox" ng-disabled="role.id == idForAgentBroker && userWasAgent == true" name="userRoles[]" value="{{role.id}}">
+                        <label for="role_{{role.id}}">{{role.name}}</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="agent-information">
+            <h1>Agency Information</h1>
+            <div class="input-holder" ng-class="{'error' : errors.agencyName.length > 0}">
+                <label for="agency-name" class="icon-agency"></label>
+                <input type="text" placeholder="Enter An Agency Name" id="agency-name" name="agencyName" ng-model="form.data.agencyName">
+                <span class="border"></span>
+                <span class="error-text">{{errors.agencyName[0]}}</span>
+            </div>
+            <div class="input-holder onTop-mobile" ng-class="{'error' : errors.companyLogo.length > 0}">
+                <div class="company-logo" ng-class="{'image-loaded' : form.data.companyLogo != '' && form.data.companyLogo != undefined}">
+                    <input type="file" ngf-select ng-model="form.data.companyLogo" onchange="companyLogoUploader(this , '.company-profileP')">
+                    <div class="picture-holder"><img src="{{companyLogo}}" class="company-profileP" alt="Company logo"></div>
+                    <span class="delete" ng-click="cancelLogo()"><span class="icon-trash"></span></span>
+                    <span class="name-tag">Add Company Logo</span>
+                </div>
+                <span class="error-text">{{errors.companyLogo[0]}}</span>
+            </div>
+            <div class="input-holder full-width" ng-class="{'error' : errors.agencyDescription.length > 0}">
+                <label for="D-services" class="icon-technical-support"></label>
+                <textarea id="D-services" name="agencyDescription" placeholder="Description of Services" ng-model="form.data.agencyDescription"></textarea>
+                <span class="border"></span>
+                <span class="error-text">{{errors.agencyDescription[0]}}</span>
+            </div>
+            <div class="input-holder full-width no-indent" ng-class="{'error' : errors.societies.length > 0}">
+                <label for="search-society" class="icon-society"></label>
+                <input type="text" placeholder="Select Societies You Deal In:" id="search-society" name="SelectDealSociety" ng-model="searchSocieties">
+                <span class="border"></span>
+                <span class="error-text">{{errors.societies[0]}}</span>
+                <span class="calculatedSocieties">{{form.data.societies.length}} selected</span>
+            </div>
+            <div class="input-holder full-width">
+                <ul class="societiesBlock-listing">
+                    <li data-ng-repeat="society in resources.societies | filter:searchSocieties">
+                        <input checklist-model="form.data.societies" checklist-value="society.id"  type="checkbox" id="society{{society.id}}" class="selectSociety-checkbox">
+                        <label for="society{{society.id}}">{{society.name}}</label>
+                    </li>
+                </ul>
+            </div>
+            <h1> Agency Contact Details</h1>
+            <div class="input-holder" ng-class="{'error' : errors.companyPhone.length > 0}">
+                <label for="compny-phone" class="icon-phone"></label>
+                <input type="tel" placeholder="Enter Company Phone Number" name="companyPhone" id="compny-phone" ng-model="form.data.companyPhone">
+                <span class="border"></span>
+                <span class="error-text">{{errors.companyPhone[0]}}</span>
+            </div>
+            <div class="input-holder" ng-class="{'error' : errors.companyMobile.length > 0}">
+                <label for="compny-mobile" class="icon-phone_iphone"></label>
+                <input type="tel" placeholder="Enter Company Mobile Number" name="companyMobile" id="compny-mobile" ng-model="form.data.companyMobile">
+                <span class="border"></span>
+                <span class="error-text">{{errors.companyMobile[0]}}</span>
+            </div>
+            <div class="input-holder full-width" ng-class="{'error' : errors.companyAddress.length > 0}">
+                <label for="compny-address" class="icon-directions"></label>
+                <input type="text" placeholder="Enter Company Address" name="companyAddress" id="compny-address" ng-model="form.data.companyAddress">
+                <span class="border"></span>
+                <span class="error-text">{{errors.companyAddress[0]}}</span>
+            </div>
+            <div class="input-holder" ng-class="{'error' : errors.companyEmail.length > 0}">
+                <label for="compny-email" class="icon-envelope"></label>
+                <input type="email" placeholder="Enter Company Email" name="companyEmail" id="compny-email" ng-model="form.data.companyEmail">
+                <span class="border"></span>
+                <span class="error-text">{{errors.companyEmail[0]}}</span>
+            </div>
+        </div>
+        <div class="input-holder full-width">
+            <button type="submit">Update profile</button>
+        </div>
+    </form>
+</div>

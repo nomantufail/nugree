@@ -1,0 +1,79 @@
+<div class="property-listing-page" ng-init="initialize()">
+
+    <strong class="property-for">{{propertiesPurpose}}</strong>
+    <a class="property-status-links-opener"><span class="text-container">Property Listings</span><span class="lines"></span></a>
+    <ul class="property-status-links">
+        <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active':searchPropertiesParams.status_id == propertyStatus.id}">
+            <a ng-click="setPropertyStatus(propertyStatus.id)" href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?status={{propertyStatus.id}}" class="{{propertyStatus.name | lowercase}}">
+                {{propertyStatus.name}} <span class="number">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span>
+            </a>
+        </li>
+    </ul>
+    <ul class="sorting-filtering">
+        <li ng-show="totalProperties > searchPropertiesParams.limit">
+            <label for="show-properties">View</label>
+            <div class="input-holder">
+                <span class="fake-select">
+                   <select id="show-properties" ng-model="propertiesLimit" ng-change="limitChanged()">
+                       <option value="10">10</option>
+                       <option value="20">20</option>
+                       <option value="50">50</option>
+                       <option value="100">100</option>
+                   </select>
+                </span>
+            </div>
+        </li>
+
+    </ul>
+    <ul class="multipal-actions">
+        <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="multipal-delete"><span class="icon-bin-delete"></span></a></li>
+    </ul>
+    <div class="table-responsive">
+        <ul class="listing-pro">
+            <li class="t-h text-upparcase text-center">
+                <div class="pro-id border">
+                    <label for="property-ids" class="customCheckbox">
+                        <input type="checkbox" ng-model="checkAllPropertiesChkbx" id="property-ids">
+                        <span class="fake-checkbox"></span>
+                        <span class="fake-label">ID</span>
+                    </label>
+                </div>
+                <div class="pro-type border"><p>TYPE</p></div>
+                <div class="pro-location border"><p>LOCATION</p></div>
+                <div class="pro-price border"><p>PRICE (Pkr)</p></div>
+                <div class="pro-size border"><p>Size</p></div>
+                <div class="pro-date border"><p>Date</p></div>
+                <div class="pro-controls border"><p>Controls</p></div>
+            </li>
+            <li class="t-d text-center" data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
+                <div class="pro-id border">
+                    <label for="{{property.id}}" class="customCheckbox">
+                        <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id" id="{{property.id}}">
+                        <span class="fake-checkbox"></span>
+                        <span class="fake-label">{{property.id}}</span>
+                    </label>
+                </div>
+                <div class="pro-type border"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}}</p></div>
+                <div class="pro-location border"><p>{{property.location.location.location}}</p></div>
+                <div class="pro-price border"><p>{{property.price}}</p></div>
+                <div class="pro-size border"><p>{{property.land.area}} {{property.land.unit.name}}</p></div>
+                <div class="pro-date border"><p>{{property.createdAt.split(" ")[0]}}</p></div>
+                <div class="pro-controls border">
+                    <ul class="control-link">
+                        <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.active"><a href="{{domain}}property?propertyId={{property.id}}" target="_blank"><span class="icon-search-doc"></span></a></li>
+                        <li ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted"><a href="#/home/properties/edit/{{property.id}}" ><span class="icon-pencil"></span></a></li>
+                        <li ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted"><a ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-loop"></span></a></li>
+                        <li><a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <ul class="pager" ng-show="getPages().length > 0">
+        <li><a href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?{{updateQueryString('page',1)}}" class="first"><span class="icon-arrow1-left"></span></a></li>
+        <li ng-hide="getCurrentPage() == 1"><a href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?{{updateQueryString('page',(getCurrentPage()-1))}}" class="previous"><span class="icon-bold-arrow-left"></span></a></li>
+        <li ng-repeat="page in getPages()" ng-class="{'active':getCurrentPage() == page}"><a href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?{{updateQueryString('page',page)}}">{{page}}</a></li>
+        <li ng-hide="getCurrentPage() == getPages().length"><a href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?{{updateQueryString('page',(getCurrentPage()+1))}}" class="next"><span class="icon-bold-arrow-right"></span></a></li>
+        <li><a href="{{domain}}dashboard#/home/properties/{{propertiesPurpose}}?{{updateQueryString('page',getPages().length)}}" class="last"><span class="icon-arrow1-right"></span></a></li>
+    </ul>
+</div>

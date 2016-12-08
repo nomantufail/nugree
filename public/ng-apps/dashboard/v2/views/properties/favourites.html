@@ -1,0 +1,55 @@
+<div class="property-listing-page" ng-init="initialize()">
+    <ul class="sorting-filtering">
+        <li>
+            <label for="show-properties">View</label>
+            <div class="input-holder">
+                <span class="fake-select">
+                   <select id="show-properties" ng-model="params.limit" ng-change="limitChanged()">
+                       <option value="10">10</option>
+                       <option value="20">20</option>
+                       <option value="50">50</option>
+                       <option value="100">100</option>
+                   </select>
+                </span>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="listing-pro">
+        <li class="t-h text-upparcase text-center">
+            <div class="pro-id border">
+                <label for="property-ids" class="customCheckbox">
+                    <input type="checkbox" ng-model="checkAllPropertiesChkbx" id="property-ids">
+                    <span class="fake-checkbox"></span>
+                    <span class="fake-label">ID</span>
+                </label>
+            </div>
+            <div class="pro-type border"><p>TYPE</p></div>
+            <div class="pro-location border"><p>LOCATION</p></div>
+            <div class="pro-price border"><p>PRICE (Pkr)</p></div>
+            <div class="pro-size border"><p>Size</p></div>
+            <div class="pro-date border"><p>Date</p></div>
+            <div class="pro-controls border"><p>Controls</p></div>
+        </li>
+        <li class="t-d text-center" data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
+            <div class="pro-id border">
+                <label for="{{property.id}}" class="customCheckbox">
+                    <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id" id="{{property.id}}">
+                    <span class="fake-checkbox"></span>
+                    <span class="fake-label">{{property.id}}</span>
+                </label>
+            </div>
+            <div class="pro-type border"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}}</p></div>
+            <div class="pro-location border"><p>{{property.location.location.location}}</p></div>
+            <div class="pro-price border"><p>{{property.price}}</p></div>
+            <div class="pro-size border"><p>{{property.land.area}} {{property.land.unit.name}}</p></div>
+            <div class="pro-date border"><p>{{property.createdAt.split(" ")[0]}}</p></div>
+            <div class="pro-controls border">
+                <ul class="control-link">
+                    <li><a class="details opener" title="Details" href="{{domain}}property?propertyId={{property.id}}" target="_blank"><span class="icon-search-doc"></span></a></li>
+                    <li><a ng-click="deleteProperty(property.id)" class="delete" title="Delete this property"><span class="icon-bin-delete"></span></a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

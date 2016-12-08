@@ -1,0 +1,105 @@
+<div id="wrapper">
+    <header id="header" ng-controller="HeaderController">
+        <a href="#home/listings/all" class="logo">Nugree.com</a>
+        <a class="sideBar-opener"><span></span></a>
+        <span class="our-contactNum">
+                <a href="{{domain}}"><span class="icon-home-button"></span><span class="hidden-xs">nugree.com</span></a>
+            </span>
+        <a ng-click="logout()" class="logout" title="Logout"><span class="icon-logout"></span> <span class="hidden-xs">Logout</span></a>
+        <a href="#home/properties/add" class="add-property"><span class="hidden-xs">Add a</span> property</a>
+        <div class="searhForm-holder">
+            <a class="form-openerMobile"><span class="icon-search"></span></a>
+            <form class="searh-dashboard" ng-submit="searchProperty()">
+                <input type="search" placeholder="Search by ID" ng-model="propertyId">
+                <button type="submit"><span class="icon-search"></span></button>
+            </form>
+        </div>
+    </header>
+    <main id="main" role="main">
+        <aside id="sidebar-dashboard" ng-controller="SidebarController">
+
+            <div class="user-picture">
+                <div class="layout">
+                    <a href="#home/profile" class="image-thumb"><img src="{{getUserLogo()}}" width="388" height="395" alt="user-image"></a>
+                    <div class="layout">
+                        <a href="#home/profile" class="user-name">{{authUser.fName}} {{authUser.lName}}</a>
+                        <span class="account-type">premium</span>
+                    </div>
+                </div>
+                <ul class="notifications-links">
+                    <li class="display-badge">
+                        <a title="Email Alerts">
+                            <span class="icon-service-courier"></span>
+                        </a>
+                    </li>
+                    <li class="display-badge">
+                        <a title="Messages Alerts">
+                            <span class="icon-facebook-chat-balloons"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-holder">
+                <form class="search-sideBar">
+                    <input type="search" ng-model="search" placeholder="Search Links">
+                    <button type="submit"><span class="icon-search"></span></button>
+                </form>
+            </div>
+            <ul class="sideBar-links" filter-list="search">
+                <li><a href="#"><span class="icon-home-button"></span>dashboard</a></li>
+                <li ng-class="{'active':activeLink==='home.properties.all'}">
+                    <a href="#home/listings/all"><span class="icon-list"></span>listings <span class="badge">{{propertiesCounts | filterByCountParam: undefined}}</span></a>
+                    <ul class="sub-links">
+                        <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="badge small">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
+                    </ul>
+                </li>
+                <li ng-class="{'active':activeLink==='home.properties.favourites'}"><a href="#home/properties/favourites"><span class="icon-favourites-filled-star-symbol"></span>favorites<span class="badge">{{favouritesCount}}</span></a></li>
+                <li ng-class="{'active':activeLink==='home.profile'}"><a href="#home/profile"><span class="icon-user2"></span>My profile</a></li>
+                <li ng-class="{'active':activeLink==='home.change-password'}"><a href="#home/change-password"><span  class="icon-key"></span>Change Password</a></li>
+            </ul>
+        </aside>
+        <div class="pages-holder {{loading_content_class}}">
+            <ui-view></ui-view>
+        </div>
+    </main>
+    <footer id="footer" ng-controller="FooterController">
+        <div class="container">
+            <div class="cols-holder">
+                <div class="col">
+                    <h2>Address</h2>
+                    <address>4105 Garfield Road Bartonville, IL 61607, UAE</address>
+                </div>
+                <div class="col">
+                    <h2>About</h2>
+                    <ul>
+                        <li><a href="#">Terms of Trade</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Copyrights</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h2>Follow us</h2>
+                    <ul class="social-networks">
+                        <li><a href="#" class="facebook"><span class="icon-facebook"></span></a></li>
+                        <li><a href="#" class="twitter"><span class="icon-twitter"></span></a></li>
+                    </ul>
+                </div>
+                <div class="col" ng-controller="FeedbackController">
+                    <h2>Feedback</h2>
+                    <form class="contact" ng-submit="sendFeedback()">
+                        <div class="input-holder"  ng-class="{'error' : errors.email.length > 0}">
+                            <input type="email" placeholder="Enter you email address" ng-model="form.data.email">
+                            <span class="error-text">Please enter a valid email.</span>
+                        </div>
+                        <div class="input-holder"  ng-class="{'error' : errors.email.length > 0}">
+                            <textarea placeholder="Enter you message" ng-model="form.data.message"></textarea>
+                            <span class="error-text">Please enter a message.</span>
+                        </div>
+                        <input type="submit"  value="Send">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>

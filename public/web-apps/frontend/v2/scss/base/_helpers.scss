@@ -1,0 +1,113 @@
+// list reset
+%listreset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// clearfix
+%clearfix {
+ &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+%img-res{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+%container{
+	max-width:1170px;
+	margin:0 auto;
+	padding:0 15px;
+  clear: both;
+}
+.container {
+  @extend %container;
+}
+.clearfix {
+  @extend %clearfix;
+}
+
+// transition
+%transition {
+ transition: all 0.3s ease-in-out;
+}
+
+// justify nav
+%justify {
+ text-align: justify; 
+ font-size: 1px;
+ line-height: 0px;
+ > * {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+ }
+ &:after { 
+  content: '';
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+ }
+}
+
+
+
+/// * Helper class to truncate and add ellipsis to a string too long for it to fit
+/// * on a single line.
+/// * 1. Prevent content from wrapping, forcing it on a single line.
+/// * 2. Add ellipsis at the end of the line.
+
+.ellipsis {
+  white-space: nowrap; /* 1 */
+  text-overflow: ellipsis; /* 2 */
+  overflow: hidden;
+}
+
+
+%text-center { text-align: center; }
+.text-center { @extend %text-center; }
+
+%text-left { text-align: left; }
+.text-left { @extend %text-left;}
+
+%text-right { text-align: right;}
+.text-right { @extend %text-right;}
+
+%text-upparcase { text-transform: uppercase;}
+.text-upparcase { @extend %text-upparcase;}
+
+%text-lowercase{ text-transform: lowercase;}
+.text-lowercase { @extend %text-lowercase;}
+
+%text-capital{ text-transform: capitalize};
+.text-capital { @extend %text-capital;}
+
+%pull-left{ float: left !important;}
+.pull-left { @extend %pull-left;}
+
+%pull-right{ float: right !important;}
+.pull-right { @extend %pull-right;}
+
+%layout{ overflow: hidden;}
+.layout { @extend %layout;}
+
+%hidden{ display: none !important;}
+.hidden { @extend %hidden;}
+
+%hidden-xs{ @include media('<tablet'){ display: none !important;} }
+.hidden-xs { @extend %hidden-xs;}
+
+%full-width {
+  width: 100%;
+  display: block;
+  clear: both;
+}
+.full-width{
+  @extend %full-width;
+}

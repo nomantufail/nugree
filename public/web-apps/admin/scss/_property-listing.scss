@@ -1,0 +1,580 @@
+/*Listing page with table */
+.pendingForAdmin-property-holder{
+	overflow: hidden;
+	padding: 60px 10px 0;
+	transition: padding 0.4s ease;
+	
+	&.slide-onMobile-active{
+		
+		.slide-onMobile{ display: block !important;}	
+	}
+	
+	.sideBar-active &{
+		padding: 60px 10px 0 320px;
+		
+		@include media('<widescreen'){
+			padding: 60px 10px 0 310px;
+		}
+		
+		@include media('<desktop'){
+			padding: 60px 10px 0 260px;
+		}
+		@include media('<tablet'){
+			padding: 60px 10px 0;
+		}
+		
+		.listing-cetegories-links {
+			ul{
+				padding: 0 10px 0 300px;
+				
+				@include media('<desktop'){
+					padding: 0 10px 0 250px;
+				}
+				@include media('<tablet'){
+					padding: 0;
+				}
+			}
+		}
+	}
+	
+	.quick-links {
+		@extend %listreset;
+		float: right;
+		padding: 5px 0 0;
+		@include align-reset(top, 14, 20);
+
+		li{
+			padding: 0 5px;
+			margin: 0 0 10px;
+
+			a {
+				text-decoration: none;
+				border: 1px solid transparent;
+				border-radius: 2px;
+				padding: 5px;
+				display: block;
+
+				span[class^="icon-"],span[class*="icon-"]{
+					padding: 0 5px 0 0;
+				}
+
+				&:hover {
+					opacity: 0.9;
+				}
+
+				&.delete {
+					border-color: darken($red, 15%);
+					color: darken($red, 15%);
+					background: rgba($red, 0.3);
+				}
+			}
+		}
+	}
+
+	.listing-cetegories-links {
+		position: fixed;
+		top: 52px;
+		left: 0;
+		right: 0;
+		z-index: 99;
+		background:$light-gray;
+		text-transform: capitalize;
+		
+		@include media('<tablet'){
+			top: 48px;
+		}
+		
+		ul{
+			transition: padding 0.4s ease; 
+			@extend %listreset;
+			@include align-reset(top, 18,21);
+			
+			@include media('<widescreen'){
+				@include align-reset(top, 16,19);
+			}
+			
+			&.navFor-mobile {
+				text-align: center;
+				@include media('>=desktop'){
+					display: none;
+				}
+				li{
+					display: block;
+					position: relative;
+					
+					.slide-onMobile-opener{
+						cursor: pointer;
+						&:hover{ background: none;}
+					}
+					.tag{
+						position: absolute;
+						top: 0;
+						bottom: 0;
+						left: 0;
+						background: $mix-grays;
+						color: $white;
+						padding: 13px 10px;
+						
+						@include media('<tablet'){
+							@include font(12,15);
+							padding: 17px 8px;
+						}
+					}
+				}
+			}
+			
+			&.slide-onMobile{
+				@include media('<desktop'){
+					display: none;
+					
+					li{
+						display: block;
+						@include font(14,17);
+					}
+				}
+			}
+			
+			li{
+				&.active-nav{
+					a{
+						background: $white;
+					}
+				}
+				
+				strong{
+					@include align(top);
+					font-weight: 600;
+					position: relative;
+					
+					&:before{
+						font-family: 'icomoon';
+						@include align(top);
+						padding: 0 4px;
+						font-weight: 400;
+					}
+					
+					&.active{
+						color: $green;
+						
+						&:before{
+							content: "\e91d";
+						}
+					}
+					&.pending{
+							color: $mix-blue;
+							
+							&:before{
+								content: "\e90d";
+							}
+					}
+					&.rejected{
+							color:#bc5858;
+							
+							&:before{
+								content: "\e920";
+							}
+					}
+					&.expired{
+							color: #cf8511;
+							
+							&:before{
+								content: "\e912";
+							}
+					}
+					&.deleted{
+							color: $red;
+							
+							&:before{
+							content: "\e910";
+						}
+					}
+				}
+				
+				a{
+					display: block;
+					padding: 15px 48px;
+					transition: color 0.4s ease, background 0.4s ease;
+					color: $dove-black;
+					text-decoration: none;
+					
+					@include media('<1426px'){
+						padding: 15px 18px;
+					}
+					
+					@include media('<widescreen'){
+						padding: 15px 7px;
+					}
+					
+					&:hover{
+						background: $white;
+					}
+					
+					.numbering{
+						@include font(13,17);
+						@include align(middle);
+						min-width: 36px;
+						
+						&:before, &:after{
+							@include align(middle);
+							content: '(';
+							margin: -4px 0 0;
+						}
+						&:after{
+							content: ')';
+						}
+					}
+				}
+			}
+		}
+	}
+	.property-filter{
+		overflow: hidden;
+		
+		.by-user-sorting, .by-id-sorting {
+			overflow: hidden;
+			margin: 0 0 10px;
+			float: left;
+			
+			ul{
+				float: left;
+				@extend %listreset;
+				@include align-reset(middle,14,17);
+				text-transform: capitalize;
+				
+				@include media('<widescreen'){
+					@include align-reset(middle,12,15);
+				}
+				
+				@include media('<tablet'){
+					float: none;
+					overflow: hidden;
+					display: block;
+					margin: 0 -5px;
+				}
+				
+				li{
+					padding: 5px 7px 10px;
+					float: left;
+					
+					label{
+						margin: 0 10px 0 0;
+						
+					}
+					
+					select{
+						min-width: 50px;
+						border: 1px solid $mix-black;
+						height: 29px;
+						@include font(12,15);
+						outline: none;
+					}
+				}
+			}
+			input[type="submit"]{
+				border: 0;
+				height: 30px;
+				padding:4px 10px;
+				margin: 4px 0 0;
+				text-transform: uppercase;
+				background: $green;
+				color: $white;
+				float: left;
+				transition: background 0.3s ease;
+				outline: none;
+				
+				@include media('<widescreen'){
+					padding: 5px;
+					@include font(12,15);
+				}
+				
+				@include media('<tablet'){
+					float: none;
+					width: 100%;
+					display: block;
+				}
+				
+				&:hover{ background: $sharp-musterd;}
+			}
+		}
+		.by-id-sorting{
+			float: right;
+			
+			@include media('<widescreen'){
+				padding: 0;
+				width: 46%;
+			}
+		}
+	}
+	.table-responsive{
+		overflow-x: auto;
+	}
+	.properties-table{
+		width: 100%;
+		margin: 0 auto;
+		@extend %listreset;
+		overflow: hidden;
+		
+		.sideBar-active &{
+			margin: 0;
+		}
+		
+		@include media('<widescreen'){
+			width: 1200px;
+		}
+		@include media('<desktop'){
+			@include font(14,18);
+		}
+		
+		@include media('<desktop'){
+			width: 894px;
+		}
+		
+		li{
+			width: 100%;
+			@include align-reset(top,15,18);
+			border-bottom: 1px solid rgba($mix-grays, 0.4);
+			position: relative;
+			
+			@include media('<1555px'){
+				@include align-reset(top,13,16);
+			}
+			
+			&.active {
+				border-left: 1px solid rgba($mix-grays, 0.4);
+				border-right: 1px solid rgba($mix-grays, 0.4);
+				background: rgba($black, 0.03);
+			}
+			
+			&:first-child{
+				border: 0;
+				background: rgba($defualt-blue, 0.5);
+				border-radius: 4px;
+			}
+			
+			&.restoring,
+			&.deleting {
+               &:after{
+                   position: absolute;
+                   top: 0;
+                   left: 0;
+                   right: 0;
+                   bottom: 1px;
+                   padding: 7px 0;
+                   background:  rgba($white, 0.9);
+                   content: 'Deleting...';
+                   color: $red;
+                   @include font(18,25);
+                   text-align: center;
+				   letter-spacing: 0;
+				   display: block;
+               }
+           }
+		   &.restoring {
+			   &:after{
+					content: 'Restoring...';
+					color: $mix-blue;
+			   }
+		   }
+			
+			.t-head{
+				text-align: left;
+				padding: 8px;
+				color: $white;
+				width: 14.28%;
+				font-weight: 600;
+				
+				&.by-location,
+				&.by-type{
+					width: 23.72%;
+				}
+				
+				&.by-id {
+					width: 8%;
+				}
+				
+				&.by-price{
+					width: 8%;
+				}
+				
+				&.by-view {
+					width: 8%;
+				}
+				
+				@include media('<1555px'){
+					width: 14.28% !important;
+				}
+				
+				@include media('<desktop'){
+					padding: 5px;
+				}
+				
+				span {
+					@include align(top);
+					cursor: pointer;
+					position: relative;
+					
+					&:after{
+						position: absolute;
+						top: 8px;
+						right: -15px;
+						border: 5px solid transparent;
+						content: '';
+					}
+					
+					&.descending{
+						&:after{
+							border-top: 5px solid $white;
+						}
+					}
+					
+					&:hover{
+						color: $index-white;
+						&:after{ opacity: 0.8;}
+					}
+				}
+			}
+			
+			.t-data{
+				text-align:left;
+				padding: 10px 8px;
+				overflow: hidden;
+				width: 14.28%;
+				
+				&.by-location,
+				&.by-type{
+					width: 23.72%;
+				}
+				
+				&.by-id {
+					width: 8%;
+				}
+				
+				&.by-price{
+					width: 8%;
+				}
+				
+				&.by-view {
+					width: 8%;
+				}
+				
+				@include media('<desktop'){
+					padding: 5px;
+				}
+				
+				@include media('<1555px'){
+					width: 14.28% !important;
+				}
+			}
+			p{
+				margin: 0;
+			}
+			a{
+				@include align(top);
+				text-decoration:none;
+				@include font(18,21);
+				margin: 0 5px;
+				color: $black;
+				cursor: pointer;
+				padding: 0;
+				width: auto;
+				max-width: inherit;
+				
+				&.details{
+					color: $mix-blue;
+					font-size: 20px;
+					line-height: 1;
+					font-weight: bold;	
+					&:hover{ color: darken($mix-blue, 15%);}
+				}
+				&.edit{
+					color: $orange;
+					&:hover{ color: darken($orange, 15%);}
+				}
+				&.delete{
+					color: $red;
+					&:hover{ color: darken($red, 15%);}
+				}
+				&.accept {
+					color: $green;
+					&:hover { color: darken($green, 15%);}
+				}
+			}
+			.slide{
+				display: block;
+				overflow: hidden;
+				padding: 0 0 10px;
+				
+				.two-cols {
+					@include align-reset(top,14,17);
+					padding: 20px 20px 0;
+					color: $mix-grays;
+					
+					.col {
+						width: 50%;
+					}
+					h1 {
+						@include font(22,25);
+						font-style: italic;
+						margin: 0 0 15px;
+						text-transform: capitalize;
+						font-weight: 600;
+					}
+					p { margin: 0 0 10px;}
+				}
+				.btn-more{
+					color: $white;
+					font-weight: 600;
+					@include font(16,19);
+					border-radius: 4px;
+					width: 200px;
+					margin: 0 auto;
+					background: $green;
+					text-align: center;
+					display: block;
+					border-bottom: 4px solid darken($green, 15%);
+					padding: 5px 10px;
+					transition: border 0.4s ease, background 0.4s ease;
+					-webkit-transition: border 0.4s ease, background 0.4s ease;
+					-moz-transition: border 0.4s ease, background 0.4s ease;
+					-ms-transition: border 0.4s ease, background 0.4s ease;
+					
+					&:hover{
+						background: $orange;
+						border-bottom: 4px solid darken($orange, 15%);
+					}
+				}
+			}
+		}
+	}
+}
+.pendingForAdmin-property-holder {
+	padding: 15px 10px 0;
+	
+	.sideBar-active &{
+		padding: 15px 10px 0 320px;
+		
+		@include media('<widescreen'){
+			padding: 15px 10px 0 310px;
+		}
+		
+		@include media('<desktop'){
+			padding: 15px 10px 0 260px;
+		}
+		@include media('<tablet'){
+			padding: 15px 10px 0;
+		}
+		
+		.listing-cetegories-links {
+			ul{
+				padding: 0 10px 0 300px;
+				
+				@include media('<desktop'){
+					padding: 0 10px 0 250px;
+				}
+				@include media('<tablet'){
+					padding: 0;
+				}
+			}
+		}
+	}
+}

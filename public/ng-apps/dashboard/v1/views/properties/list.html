@@ -1,0 +1,128 @@
+<div class="property-listing-holder" ng-init="initialize()" ng-controller="ListPropertiesController">
+    <div class="listing-cetegories-links">
+        <ul class="navFor-mobile">
+            <li>
+                <span class="tag">{{resources.purposes | purposeDisplayName:searchPropertiesParams.purpose_id}}</span>
+                <a class="slide-onMobile-opener">
+                    <strong class="active"> active <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : resources.propertyStatusesIds.active}}</span></strong>
+                </a>
+            </li>
+        </ul>
+        <ul class="slide-onMobile">
+            <li data-ng-repeat="propertyStatus in resources.propertyStatuses" ng-class="{'active-nav':searchPropertiesParams.status_id === propertyStatus.id}">
+                <a ng-click="setPropertyStatus(propertyStatus.id)" href="">
+                    <strong class="{{propertyStatus.name}}">{{propertyStatus.name}} <span class="numbering">{{propertiesCounts | filterByCountParam: searchPropertiesParams.purpose_id : propertyStatus.id}}</span></strong>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="property-form-table">
+        <div class="property-filter">
+            <ul class="quick-links">
+                <li ng-show="deletingProperties.ids.length > 0" ng-click="deleteProperties()"><a class="delete"><span class="icon-bin"></span>Delete</a></li>
+            </ul>
+            <form class="by-user-sorting">
+                <ul>
+                    <li>
+                        <label>Show</label>
+                        <select ng-model="searchPropertiesParams.limit" ng-change="filtersChanged()">
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>listings per page from</label>
+                        <select ng-model="searchPropertiesParams.owner_id" ng-change="filtersChanged()">
+                            <option value="">All Members</option>
+                            <option data-ng-repeat="member in resources.agencyStaff" value="{{member.id}}">{{member.fName}} {{member.lName}}</option>
+                        </select>
+                    </li>
+                </ul>
+            </form>
+            <form class="by-id-sorting">
+                <ul>
+                    <li>
+                        <label>Sort by</label>
+                        <select>
+                            <option>ID</option>
+                            <option>Type</option>
+                            <option>Location</option>
+                            <option>Price</option>
+                            <option>Listed Date</option>
+                            <option>Views</option>
+                        </select>
+                    </li>
+                    <li>
+                        <label>in</label>
+                        <select>
+                            <option>Descending</option>
+                            <option>Ascending</option>
+                        </select>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="table-responsive">
+
+            <ul class="properties-table accordion">
+                <li>
+                    <div class="t-head by-id">
+                        <input type="checkbox" id="ID" ng-model="checkAllPropertiesChkbx">
+                        <label><span class="descending">ID</span></label>
+                    </div>
+                    <div class="t-head by-type"><span class="descending">Type</span></div>
+                    <div class="t-head by-location"><span class="descending">Location</span></div>
+                    <div class="t-head by-price"><span class="descending">Price (PKR)</span></div>
+                    <div class="t-head"><span class="descending">Listed Date</span></div>
+                    <div class="t-head by-view"><span class="descending">Views</span></div>
+                    <div class="t-head"><span class="descending">Controls</span></div>
+                </li>
+                <li data-ng-repeat="property in properties" ng-class="{'deleting' : deletingPropertyId == property.id , 'restoring' : restoringPropertyId == property.id}" class="accordion-row">
+                    <div class="t-data by-id">
+                        <input type="checkbox" checklist-model="deletingProperties.ids" checklist-value="property.id">
+                        <label for="id1">{{property.id}} </label>
+                    </div>
+                    <div class="t-data by-type"><p>{{property.type.parentType.name}}. {{property.type.subType.name}} {{property.land.area}} {{property.land.unit.name}} </p></div>
+                    <div class="t-data by-location"><p> {{property.location.society.name}} - {{property.location.block.name}} Block</p></div>
+                    <div class="t-data by-price"><p>{{property.price}}</p></div>
+                    <div class="t-data">
+                        <time datetime="2016-04-18">18 Apr 2016</time>
+                    </div>
+                    <div class="t-data by-view">{{property.totalLikes}}</div>
+                    <div class="t-data">
+                        <a class="details opener" title="Details"><span class="icon-notebook"></span></a>
+                        <a ng-hide="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" href="#/home/properties/edit/{{property.id}}" class="edit" title="Edit the property"><span class="icon-pencil"></span></a>
+                        <a ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.deleted" ng-click="restoreProperty($index)" class="undo" title="Restore property"><span class="icon-refresh-arrow"></span></a>
+                        <a ng-click="deleteProperty($index)" class="delete" title="Delete this property"><span class="icon-trash"></span></a>
+                    </div>
+                    <div class="slide">
+                        <div class="two-cols">
+                            <div class="col">
+                                <h1>Owner info:</h1>
+                                <p><b>Owner Name:</b> {{property.owner.fName}} {{ property.owner.lName }}</p>
+                                <p><b>Owner Email:</b> {{property.email}} </p>
+                                <p><b>Owner Phone:</b> {{property.phone}} </p>
+                                <p><b>Owner Fax:</b> {{property.fax}} </p>
+                            </div>
+                            <div class="col">
+                                <h1>property title:</h1>
+                                <p>{{property.title}}</p>
+                                <h1>property description:</h1>
+                                <p>{{property.description}}</p>
+                            </div>
+                        </div>
+                        <a target="_blank" href="{{domain}}property?propertyId={{property.id}}" ng-show="searchPropertiesParams.status_id == resources.propertyStatusesIds.active" class="btn-more">View more</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="pager">
+            <li ng-class="{'disable' : activePage == 1}" ng-click="setPage(activePage - 1)"><a><span class="icon-chevron-thin-left"></span>Previous</a></li>
+            <li><span class="static">Showing <em><b>{{activePage}}</b></em> of <em><b>{{totalProperties/searchPropertiesParams.limit | roundup}}</b></em> pages</span></li>
+            <li ng-class="{'disable' : activePage >= totalProperties/searchPropertiesParams.limit}" ng-click="setPage(activePage+1)"><a>Next<span class="icon-chevron-thin-right"></span></a></li>
+        </ul>
+    </div>
+</div>

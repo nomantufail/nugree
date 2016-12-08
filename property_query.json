@@ -1,0 +1,157 @@
+//GET /p42/property/_search
+{
+    "query": {
+        "filtered": {
+            "filter": {
+                "bool": {
+                    "must":[
+                        {
+                            "or": {
+                                "filters": [
+                                    {
+                                        "and": {
+                                            "filters": [
+                                                {
+                                                    "query": {
+                                                        "match_phrase": {
+                                                            "location.society": "d.h.a axe air avenue"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "term": {
+                                                        "location.block": "m"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "and": {
+                                            "filters": [
+                                                {
+                                                    "query": {
+                                                        "match_phrase": {
+                                                            "location.society": "dha phase 6"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "term": {
+                                                        "location.block": "q"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "and": {
+                                            "filters": [
+                                                {
+                                                    "query": {
+                                                        "match_phrase": {
+                                                            "location.society": "madina town phase 11"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "term": {
+                                                        "location.block": "l"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "term": {
+                                "location.country": {
+                                    "value":"pakistan"
+                                }
+                            }
+                        },
+                        {
+                            "term": {
+                                "location.city": {
+                                    "value":"lahore"
+                                }
+                            }
+                        },
+                        {
+                            "term": {
+                                "type.parent_type": {
+                                    "value":"home"
+                                }
+                            }
+                        },
+                        {
+                            "range":{
+                                "price":{
+                                    "gte":10000000,
+                                    "lte":14500000
+                                }
+                            }
+                        },
+                        {
+                            "range":{
+                                "land.size":{
+                                    "gte":2250,
+                                    "lte":6000
+                                }
+                            }
+                        }
+                    ],
+                    "should":[
+                        {
+                            "term": {
+                                "features.plot_features.facing_park": {
+                                    "value":1
+                                }
+                            }
+                        },
+                        {
+                            "term": {
+                                "features.plot_features.corner": {
+                                    "value":0
+                                }
+                            }
+                        },
+                        {
+                            "term": {
+                                "features.main_features.bedrooms": {
+                                    "value":5
+                                }
+                            }
+                        },
+                        {
+                            "term": {
+                                "features.main_features.paint": {
+                                    "value":0
+                                }
+                            }
+                        }
+                    ],
+                    "minimum_number_should_match": 1
+                }
+            },
+            "query": {
+                "bool":{
+                    "must":[
+                        {
+                            "match":  {
+                                "description":"need a house"
+                            }
+                        },
+                        {
+                            "match_phrase":  {
+                                "purpose":"for sale"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+.select2-drop-active{z-index: 9;}
+.select2-container {
+    width: 300px !important;
+}
+.select2-container .select2-choice {
+    height: 30px;
+    border-radius: 0;
+    background: transparent;
+    border: 1px solid #999;
+}
+.select2-container .select2-choice .select2-arrow{
+    background: transparent;
+    width: 30px;
+    border: 0;
+}
+.select2-container .select2-choice .select2-arrow:after{
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    content: "\e92c";
+    font-family: 'icomoon';
+    font-size: 14px;
+    line-height: 14px;
+    margin: -6px 0 0;
+}
+.select2-drop-active{
+    border-color: none;
+}
+.select2-container-active .select2-choice, .select2-container-active .select2-choices{
+    box-shadow: none;
+}
+.select2-search input{
+    min-height: 30px !important;
+    margin: 0 !important;
+    max-width: inherit !important;
+    border: 1px solid #999 !important;
+}
+.select2-container {
+    width: 100% !important;
+}
+.select2-container .select2-choice {
+    padding: 0;
+}
+.select2-results .select2-highlighted:hover{
+    background: #3875d7 !important;
+    color: #fff !important;
+}
+.select2-container .select2-choice > .select2-chosen{
+    margin-right: 30px;
+    padding: 5px;
+    font-size: 14px;
+    line-height: 17px;
+}
+.select2-results {
+    font-size: 14px;
+    line-height: 17px;
+}
+@media (max-width: 1200px) {
+    .select2-container {
+        width: 200px !important;
+    }
+}
+@media (max-width: 1023px) {
+    .select2-container {
+        width: 130px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .select2-container {
+        width: 100% !important;
+    }
+}

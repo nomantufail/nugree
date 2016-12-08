@@ -1,0 +1,134 @@
+<div id="wrapper">
+    <header id="header" ng-controller="HeaderController">
+        <a class="sideBar-opener Main"><span></span></a>
+        <div class="left-header">
+            <a class="searchOpener-Mobile"><span class="icon-search"></span></a>
+            <form class="searchByID"  ng-submit="searchProperty()">
+                <input type="search" placeholder="Search by ID" ng-model="propertyId">
+                <button type="submit"><span class="icon-search"></span></button>
+            </form>
+        </div>
+        <div class="right-header">
+            <a class="mail" href="mailto:&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;">&#105;&#110;&#102;&#111;&#064;&#110;&#117;&#103;&#114;&#101;&#101;&#046;&#099;&#111;&#109;</a>
+            <ul class="logout-list text-upparcase">
+                <li class="hidden-xs"><a ng-click="logout()"><span class="icon-login"></span><span class="hidden-xs">Logout</span></a></li>
+                <li><a href="#home/properties/add"><span class="hidden-xs">List Property</span><span class="icon-plus-square"></span></a></li>
+            </ul>
+        </div>
+        <div class="logo"><a href="{{domain}}"><img width="477" height="150" alt="nugree.com" src="{{appPath}}/assets/images/logo.png"></a></div>
+    </header>
+
+    <main id="main" role="main">
+        <aside id="sidebar-dashboard" ng-controller="SidebarController">
+            <a class="sideBar-opener"><span class="icon-cross"></span></a>
+            <div class="profile-picture">
+                <div class="image-holder"><img src="{{getUserLogo()}}" alt="user image is broken"></div>
+                <div class="name">
+                    <strong class="name-tag">{{authUser.fName}} {{authUser.lName}}</strong>
+                    <span class="status">premium</span>
+                </div>
+            </div>
+            <div class="alerts-links">
+                <ul class="alerts">
+                    <li>
+                        <a href="#"><span class="icon-message"></span></a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="icon-email-alerts"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <form class="search-side-links">
+                <input type="search" ng-model="search" placeholder="Search Links">
+                <button type="submit"><span class="icon-search"></span></button>
+            </form>
+            <div class="scroll-able">
+                <ul class="sideBar-links" filter-list="search">
+                    <li><a href="#"><span class="icon-home-dash"></span>DASHBOARD</a></li>
+                    <li ng-class="{'active':activeLink === 'home.properties.all'}">
+                        <a href="#home/listings/all"><span class="icon-list"></span>LISTINGS <span class="total-tag">{{propertiesCounts | filterByCountParam: undefined}}</span></span></a>
+                        <ul class="sub-links">
+                            <li data-ng-repeat="purpose in resources.purposes | filter:search" ng-class="{'active':activeLink==='home.properties.{{purpose.name}}'}"><a href="#home/properties/{{purpose.name}}"><span class="icon-clothes-tag"></span> {{purpose.displayName}} <span class="total-tag">{{propertiesCounts | filterByCountParam: purpose.id}}</span></a></li>
+                        </ul>
+                    </li>
+                    <li ng-class="{'active':activeLink==='home.properties.favourites'}"><a href="#home/properties/favourites"><span class="icon-star"></span>FAVORITES<span class="total-tag">{{favouritesCount}}</span></a></li>
+                    <li ng-class="{'active':activeLink==='home.profile'}"><a href="#home/profile"><span class="icon-profile2"></span>My Profile</a></li>
+                    <li ng-class="{'active':activeLink==='home.change-password'}"><a href="#home/change-password"><span class="icon-chabbi"></span>Change Password</a></li>
+                    <li ng-click="logout()"><a href="#"><span class="icon-login"></span>LOGout</a></li>
+                </ul>
+            </div>
+            <ul class="social-icons">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-google-plus-symbol"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+            </ul>
+        </aside>
+
+        <div id="page-holder" class="{{loading_content_class}}">
+            <ui-view></ui-view>
+        </div>
+    </main>
+    <a href="#feedback" class="feedBack lightbox">Feedback</a>
+    <div class="popup-holder">
+        <div id="feedback" class="lightbox generic-lightbox">
+            <span class="lighbox-heading">Feedback</span>
+            <form class="inquiry-email-form">
+                <div class="field-holder">
+                    <label for="feedback-name">Name</label>
+                    <div class="input-holder"><input type="text" id="feedback-name"></div>
+                </div>
+                <div class="field-holder">
+                    <label for="feedback-email">Email</label>
+                    <div class="input-holder"><input type="email" id="feedback-email"></div>
+                </div>
+                <div class="field-holder">
+                    <label for="feedback-phone">phone</label>
+                    <div class="input-holder"><input type="tel" id="feedback-phone"></div>
+                </div>
+                <div class="field-holder">
+                    <label for="feedback-subject">subject</label>
+                    <div class="input-holder"><input type="text" id="feedback-subject"></div>
+                </div>
+                <div class="field-holder">
+                    <label for="feedback-message">message</label>
+                    <div class="input-holder">
+                        <textarea id="feedback-message"></textarea>
+                        <p>By submitting this form I agree to <a href="#terms-of-user" class="termsOfUse lightbox">Terms of Use</a></p>
+                    </div>
+                </div>
+                <button type="submit">SEND</button>
+            </form>
+        </div>
+        <div id="terms-of-user" class="lightbox generic-lightbox text-left">
+            <span class="lighbox-heading">Privacy <span>Policy</span></span>
+            <p>This Privacy policy is subject to the terms of the Site Policy (User agreement) of nugree.com. This policy is effective from the date and time a user registers with nugree.com by filling up the Registration form and accepting the terms and conditions laid out in the Site Policy.</p>
+            <p>In order to provide a personalized browsing experience, v may collect personal information from you. Additionally our website may require you to complete a registration form or seek some information from you. When you let us have your preferences, we will be able to deliver or allow you to access the most relevant information that meets your end.</p>
+            <p>To extend this personalized experience nugree.com may track the IP address of a user's computer and save certain information on your system in the form of cookies. A user has the option of accepting or declining the cookies of this website by changing the settings of your browser.</p>
+            <p>The personal information provided by the users to nugree.com will not be provided to third parties without previous consent of the user concerned. Information of a general nature may however be revealed to external parties</p>
+            <p>Every effort will be made to keep the information provided by users in a safe manner, the information will be displayed on the website will be done so only after obtaining consent from the users. Any user browsing the site generally is not required to disclose his identity or provide any information about him/her, it is only at the time of registration you will be required to furnish the details in the registration form</p>
+            <p>A full user always has the option of not providing the information which is not mandatory. You are solely responsible for maintaining confidentiality of the User password and user identification and all activities and transmission performed by the User through his user identification and shall be solely responsible for carrying out any online or off-line transaction involving credit cards / debit cards or such other forms of instruments or documents for making such transactions.</p>
+            <p>You agree that nugree.com may use personal information about you to improve its marketing and promotional efforts, to analyze site usage, improve the Site's content and product offerings, and customize the Site's content, layout, and services. These uses improve the Site and better tailor it to meet your needs, so as to provide you with a smooth, efficient, safe and customized experience while using the Site.</p>
+            <p>You agree that nugree.com may use your personal information to contact you and deliver information to you that, in some cases, are targeted to your interests, such as targeted banner advertisements, administrative notices, product offerings, and communications relevant to your use of the Site. By accepting the User Agreement and Privacy Policy, you expressly agree to receive this information. If you do not wish to receive these communications, we encourage you to opt out of the receipt of certain communications in your profile. You may make changes to your profile at any time. It is the belief of nugree.com that privacy of a person can be best guaranteed by working in conjunction with the Law enforcement authorities.</p>
+            <p>We may collect your personal data when you use this Site or our services. The term "use" includes:</p>
+            <p>(a) Uploading your Content;</p>
+            <p>(b) Making submissions/posts in user forums;</p>
+            <p>(c) Undertaking transactions on or via this Site;</p>
+            <p>(d) Accessing or browsing the Site;</p>
+            <p>(e) Communicating with us via email or signing up for newsletters</p>
+            <p>(f) Completing online forms</p>
+            <p>(g) Calling us or sending us an enquiry (including via one of the online property portal websites).</p>
+            <p>We may also collect your personal data from publicly available information such as information on third party websites, from our business partners who have your consent to pass it on or who are authorized by you to authenticate or identify you to us or enable you to sign in to our Site using their credentials</p>
+            <p>We may also collect your personal data when we monitor and record email and telephone communications with you or between you and others who are using our systems or those of our agents acting on our behalf.</p>
+            <p>We may collect all or some of the following personal data from or about you:</p>
+            <p>(a) Your name and title and gender and date of birth;</p>
+            <p>(b) Your company name or affiliation;</p>
+            <p>(c) Your contact information including phone/mobile number/fax and email address;</p>
+            <p>(d) Other demographic information including your home or other addresses and postcode;</p>
+            <p>(e) Your communication and purchase preferences and interests;</p>
+            <p>(f) Where you have submitted/posted your Content, your submissions and posts;</p>
+            <p>(g) Where you have registered with us, your user name and password.</p>
+        </div>
+    </div>
+</div>

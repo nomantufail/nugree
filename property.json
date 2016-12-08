@@ -1,0 +1,56 @@
+{
+    "property_id": 1,
+    "user": {
+        "id": 1,
+        "name": "King noman tufail",
+        "email": "nomantufail100@gmail.com",
+        "mobile": "03154379760",
+        "is_agent": 1,
+        "agency": {
+            "id": 1,
+            "estate_name": "jr property",
+            "phone": "04235708842"
+        }
+    },
+    "purpose": "for sale",
+    "type": {
+        "parent_type": "home",
+        "sub_type": "flat"
+    },
+    "location": {
+        "country": "pakistan",
+        "city": "lahore",
+        "society": "d.h.a axe air avenue",
+        "block": "m"
+    },
+    "title": "8 Marla Corner House For Sale",
+    "description": "Need a House? We have just the one you're looking for! The House is available for sale in Bahria Town - Usman Block, Lahore.The property boasts 3 beds designed according to your living needs. Not only that, the House also have 5 baths, D/D, lounge and Kitchen",
+    "price": 14500000,
+    "land": {
+        "size": 4500,
+        "unit": "kanal"
+    },
+    "features": {
+        "plot_features": [
+            {
+                "facing_park": 1
+            },
+            {
+                "corner": 1
+            }
+        ],
+        "main_features": [
+            {
+                "bedrooms": 5
+            },
+            {
+                "paint": 1
+            }
+        ]
+    },
+    "is_featured": 1,
+    "is_hot": 1,
+    "total_views": 1452,
+    "rating": 8.5,
+    "total_likes": 742
+}

@@ -1,0 +1,249 @@
+<div class="addProperty-form container {{please_wait_class}}" ng-init="initialize()">
+    <span class="global-success" ng-show="propertySaved == true">Property Updated Successfully, It will be reviewed by our staff within 24 hours.</span>
+    <div class="add-form-holder">
+        <h1>Update <span>Property</span></h1>
+        <div class="main-form">
+            <ul class="error">
+                <li data-ng-repeat="error in errors"><span>{{error[0]}}</span></li>
+            </ul>
+            <form class="property-add" ng-submit="submitProperty()">
+                <input type="checkbox" name="add-for" id="for-wanted" value="1" ng-model="form.data.wanted">
+                <span class="fake-label">Wanted Property</span>
+                <strong class="add-pro-heading"><span>property for</span></strong>
+                <ul class="radio-checks-holder text-center">
+                    <li>
+                        <label for="sale" class="custom-withouChecks transparent">
+                            <input type="radio" ng-model="form.data.propertyPurpose" value="1" name="propertyPurpose" id="sale">
+                            <span class="fake-label">For Sale</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="rent" class="custom-withouChecks transparent">
+                            <input type="radio" ng-model="form.data.propertyPurpose" value="2" name="propertyPurpose" id="rent">
+                            <span class="fake-label">For Rent</span>
+                        </label>
+                    </li>
+                </ul>
+                <strong class="add-pro-heading"><span>Property Type</span></strong>
+                <ul class="radio-checks-holder text-center">
+                    <li data-ng-repeat="type in types">
+                        <label for="{{type.name}}" class="custom-withouChecks transparent">
+                            <input type="radio" name="propertyType" ng-model="$parent.form.data.propertyType" value="{{type.id}}" id="{{type.name}}">
+                            <span class="fake-label">{{type.name}}</span>
+                        </label>
+                    </li>
+                </ul>
+                <ul class="radio-checks-holder subtype-links">
+                    <li data-ng-repeat="subType in subTypes | filter:{propertyTypeId : form.data.propertyType}">
+                        <label for="{{subType.name}}" class="customRadio">
+                            <input type="radio" ng-change="propertySubTypeChanged()" name="propertySubType" ng-model="$parent.form.data.propertySubType" id="{{subType.name}}" value="{{subType.id}}">
+                            <span class="fake-radio"></span>
+                            <span class="fake-label">{{subType.name}}</span>
+                        </label>
+                    </li>
+                </ul>
+                <strong class="add-pro-heading"><span>Property Location</span></strong>
+                <div class="layout clearfix">
+                    <div class="layout-holder">
+                        <label class="required-field">City</label>
+                        <div class="input-holder">
+                            <span class="fake-select">
+                                <select ng-model="temp.city.id" to-string>
+                                    <option ng-repeat="city in resources.cities" value="{{city.id}}">{{city.name}}</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <label class="required-field">Location</label>
+                        <div class="input-holder">
+                            <ui-select ng-model="temp.location" theme="select2" ng-change="locationChanged()" ng-disabled="ctrl.disabled" title="Choose a Location" required >
+                                <ui-select-match placeholder="select a location...">{{$select.selected.location}}</ui-select-match>
+                                <ui-select-choices refresh="searchLocations($select)" refresh-delay="300" repeat="location in locations">
+                                    <div ng-bind-html="location.location"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="property-title">Property Title</label>
+                        <div class="input-holder">
+                            <input type="text" name="propertyTitle" placeholder="Please add property title" ng-model="form.data.propertyTitle" id="property-title"  >
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label class="required-field" for="land-area">Area</label>
+                        <div class="input-holder">
+                            <input type="number" step="any" placeholder="Area of Property" ng-model="form.data.landArea" min="1" id="land-area" required >
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <label class="required-field" for="land-unit">Unit</label>
+                        <div class="input-holder">
+                            <span class="fake-select">
+                                <select name="land_unit" ng-model="form.data.landUnit" id="land-unit" required>
+                                    <option value="" selected disabled >Please Choose...</option>
+                                    <option data-ng-repeat="unit in resources.landUnits" value="{{unit.id}}">{{unit.name}}</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label class="required-field" for="property-price">Price</label>
+                        <div class="input-holder">
+                            <input type="number" min="1" class="" placeholder="Please enter the price" name="price" ng-model="form.data.price" id="property-price" required >
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <span class="calculatedPrice">{{form.data.price|priceToText}}</span>
+                    </div>
+                </div>
+                <div class="layout full-width">
+                    <div class="layout-holder">
+                        <label for="description">Description</label>
+                        <div class="input-holder">
+                            <textarea name="propertyDescription" placeholder="Please write about your property" ng-model="form.data.propertyDescription" id="description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder" ng-repeat="feature in highPriorityFeatures">
+                        <label>{{feature.name}}:</label>
+                        <div class="input-holder">
+                            <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="layout full-width">
+                    <div class="input-holder">
+                        <a class="extra-features">Extra Feature</a>
+                    </div>
+                </div>
+                <div class="list-extraFeatures">
+                    <div class="col" data-ng-repeat="featureSection in subTypeAssignedFeatures">
+                        <span class="feature-heading">{{featureSection.sectionName}}</span>
+                        <div class="layout">
+                            <div class="layout-holder" ng-repeat="feature in featureSection.features">
+                                <label>{{feature.name}}</label>
+                                <div class="input-holder">
+                                    <span my-directive my-text="helo" htmlStructure="{{feature.htmlStructure.html}}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <strong class="add-pro-heading"><span>Attachments</span></strong>
+                <ul class="image-uploading-area">
+                    <li ng-class="{'image-loaded':propertyDocuments.mainFile.path != '#'}">
+                        <div class="file-uploader">
+                            <input type="file" ngf-select ng-model="form.data.files.mainFile.file" onchange="previewAddPropertyImg(this , '.img-thumb1')" class="upload-img">
+                            <div class="image-holder">
+                                <img src="{{propertyDocuments.mainFile.path}}" class="img-thumb1" alt="image Description">
+                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(0)"><span class="icon-cross"></span></span>
+                            </div>
+                        </div>
+                        <input type="text" ng-model="form.data.files.mainFile.title" class="picture-name" placeholder="Title">
+                    </li>
+                    <li ng-class="{'image-loaded':propertyDocuments.twoFile.path != '#'}">
+                        <div class="file-uploader">
+                            <input type="file" ngf-select ng-model="form.data.files.twoFile.file" onchange="previewAddPropertyImg(this , '.img-thumb2')" class="upload-img">
+                            <div class="image-holder">
+                                <img src="{{propertyDocuments.twoFile.path}}" class="img-thumb2" alt="image Description">
+                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(1)"><span class="icon-cross"></span></span>
+                            </div>
+                        </div>
+                        <input type="text" ng-model="form.data.files.twoFile.title" class="picture-name" placeholder="Title">
+                    </li>
+                    <li ng-class="{'image-loaded':propertyDocuments.threeFile.path != '#'}">
+                        <div class="file-uploader">
+                            <input type="file" ngf-select ng-model="form.data.files.threeFile.file" onchange="previewAddPropertyImg(this , '.img-thumb3')" class="upload-img">
+                            <div class="image-holder">
+                                <img src="{{propertyDocuments.threeFile.path}}" class="img-thumb3" alt="image Description">
+                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(2)"><span class="icon-cross"></span></span>
+                            </div>
+                        </div>
+                        <input type="text" ng-model="form.data.files.threeFile.title" class="picture-name" placeholder="Title">
+                    </li>
+                    <li ng-class="{'image-loaded':propertyDocuments.fourFile.path != '#'}">
+                        <div class="file-uploader">
+                            <input type="file" ngf-select ng-model="form.data.files.fourFile.file" onchange="previewAddPropertyImg(this , '.img-thumb4')" class="upload-img">
+                            <div class="image-holder">
+                                <img src="{{propertyDocuments.fourFile.path}}" class="img-thumb4" alt="image Description">
+                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(3)"><span class="icon-cross"></span></span>
+                            </div>
+                        </div>
+                        <input type="text" ng-model="form.data.files.fourFile.title" class="picture-name" placeholder="Title">
+                    </li>
+                    <li ng-class="{'image-loaded':propertyDocuments.fiveFile.path != '#'}">
+                        <div class="file-uploader">
+                            <input type="file" ngf-select ng-model="form.data.files.fiveFile.file" onchange="previewAddPropertyImg(this , '.img-thumb5')" class="upload-img">
+                            <div class="image-holder">
+                                <img src="{{propertyDocuments.fiveFile.path}}" class="img-thumb5" alt="image Description">
+                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(4)"><span class="icon-cross"></span></span>
+                            </div>
+                        </div>
+                        <input type="text" ng-model="form.data.files.fiveFile.title" class="picture-name" placeholder="Title">
+                    </li>
+                    <li ng-class="{'image-loaded':propertyDocuments.sixFile.path != '#'}">
+                        <div class="file-uploader">
+                            <input type="file" ngf-select ng-model="form.data.files.sixFile.file" onchange="previewAddPropertyImg(this , '.img-thumb6')" class="upload-img">
+                            <div class="image-holder">
+                                <img src="{{propertyDocuments.sixFile.path}}" class="img-thumb6" alt="image Description">
+                                <span class="propertyDocumentCloseBtn" ng-click="cancelFile(5)"><span class="icon-cross"></span></span>
+                            </div>
+                        </div>
+                        <input type="text" ng-model="form.data.files.sixFile.title" class="picture-name" placeholder="Title">
+                    </li>
+                </ul>
+                <strong class="add-pro-heading"><span>contact info</span></strong>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="owner">owner</label>
+                        <div class="input-holder">
+                            <span class="fake-select">
+                               <select class="searchable-select" name="owner" ng-model="form.data.owner">
+                                   <option data-ng-repeat="owner in resources.agencyStaff" value="{{owner.id}}">{{owner.fName}} {{owner.lName}}</option>
+                               </select>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <label for="contact-person">contact person</label>
+                        <div class="input-holder">
+                            <input type="text" name="contact_person" ng-model="form.data.contactPerson">
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="phone">phone</label>
+                        <div class="input-holder">
+                            <input type="text" name="phone" ng-model="form.data.phone">
+                        </div>
+                    </div>
+                    <div class="layout-holder">
+                        <label for="block">cell</label>
+                        <div class="input-holder">
+                            <input type="text" name="cell" ng-model="form.data.cell">
+                        </div>
+                    </div>
+                </div>
+                <div class="layout">
+                    <div class="layout-holder">
+                        <label for="email">email</label>
+                        <div class="input-holder">
+                            <input type="email" name="email" ng-model="form.data.email">
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="SUBMIT PROPERTY">
+            </form>
+        </div>
+    </div>
+</div>

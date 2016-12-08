@@ -1,0 +1,1321 @@
+.addPropertyFormContainer .errors ul, .addPropertyFormContainer .section-listing, .addPropertyFormContainer .tabset, .addPropertyFormContainer .property-add .radio-holder, .addPropertyFormContainer .feature-list, .addPropertyFormContainer .image-uploading-area {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clearfix:after, .addPropertyFormContainer .property-add .layout.add:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.ellipsis {
+    white-space: nowrap;
+    /* 1 */
+    text-overflow: ellipsis;
+    /* 2 */
+    overflow: hidden;
+}
+
+/*Add a property full form*/
+.addPropertyFormContainer {
+    transition: padding 0.5s ease;
+    -webkit-transition: padding 0.5s ease;
+    -ms-transition: padding 0.5s ease;
+    -moz-transition: padding 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sideBar-active .addPropertyFormContainer {
+    padding: 0 10px 0 300px;
+}
+
+@media (max-width: 1023px) {
+    .sideBar-active .addPropertyFormContainer {
+        padding: 0 10px 0 245px;
+    }
+}
+
+@media (max-width: 767px) {
+    .sideBar-active .addPropertyFormContainer {
+        padding: 0;
+    }
+}
+
+.sideBar-active.sideBar-active .addPropertyFormContainer:after {
+    left: 300px;
+}
+
+@media (max-width: 1023px) {
+    .sideBar-active.sideBar-active .addPropertyFormContainer:after {
+        left: 250px;
+    }
+}
+
+.please-wait .addPropertyFormContainer {
+    height: 100vh;
+}
+
+.please-wait .addPropertyFormContainer:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    background: rgba(255, 255, 255, 0.9);
+    content: '';
+    transition: left 0.4s ease;
+    -webkit-transition: left 0.4s ease;
+    -moz-transition: left 0.4s ease;
+    -ms-transition: left 0.4s ease;
+}
+
+.please-wait .addPropertyFormContainer:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: url("../images/rolling.gif") no-repeat;
+    background-size: 100% , 100%;
+    z-index: 991;
+    content: 'Please wait...';
+    width: 100px;
+    height: 100px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 600;
+    margin: -150px 0 0;
+    text-align: center;
+    padding: 120px 0 0 10px;
+    color: #737373;
+}
+
+@media (max-width: 1424px) {
+    .please-wait .addPropertyFormContainer:before {
+        margin: -150px 0 0 100px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .please-wait .addPropertyFormContainer:before {
+        margin: -150px 0 0 -55px;
+    }
+}
+
+.addPropertyFormContainer.sectionListingActive .section-listing {
+    height: auto;
+    max-height: 210px;
+    opacity: 1;
+    visibility: visible;
+    z-index: 9;
+}
+
+.addPropertyFormContainer .attactment-block, .addPropertyFormContainer .basics-block, .addPropertyFormContainer .feature-block, .addPropertyFormContainer .contact-information {
+    padding: 75px 20px 0;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .attactment-block, .addPropertyFormContainer .basics-block, .addPropertyFormContainer .feature-block, .addPropertyFormContainer .contact-information {
+        padding: 75px 10px 0;
+    }
+}
+
+.addPropertyFormContainer .errors {
+    overflow: hidden;
+}
+
+.addPropertyFormContainer .errors ul {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.addPropertyFormContainer .errors ul > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 15px;
+    letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .errors ul {
+        font-size: 0;
+        line-height: 0;
+        letter-spacing: -4px;
+    }
+    .addPropertyFormContainer .errors ul > * {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: 0;
+    }
+}
+
+.addPropertyFormContainer .errors ul li {
+    padding: 7px;
+    border-radius: 4px;
+    color: #e14646;
+    margin: 0 5px 10px;
+    border: 1px solid #e14646;
+    background: #fae0e0;
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .errors ul li {
+        padding: 5px;
+        width: 45%;
+    }
+}
+
+.addPropertyFormContainer .listing-holder {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 99;
+    clear: both;
+}
+
+.addPropertyFormContainer .listing-holder:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -9999px;
+    right: -9999px;
+    z-index: -1;
+    background: #dde2e8;
+    content: '';
+}
+
+.addPropertyFormContainer .listing-holder .listing-opener {
+    text-align: center;
+    text-decoration: none;
+    color: #000;
+    font-size: 40px;
+    line-height: 36px;
+    cursor: pointer;
+    z-index: 5;
+    display: block;
+}
+
+@media (min-width: 768px) {
+    .addPropertyFormContainer .listing-holder .listing-opener {
+        display: none;
+    }
+}
+
+.addPropertyFormContainer .listing-holder .listing-opener:hover {
+    color: #606060;
+}
+
+.addPropertyFormContainer .section-listing {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    position: relative;
+    background: #dde2e8;
+    transition: padding 0.4s ease;
+    -webkit-transition: padding 0.4s ease;
+    -moz-transition: padding 0.4s ease;
+    -ms-transition: padding 0.4s ease;
+}
+
+.addPropertyFormContainer .section-listing > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0;
+}
+
+.sideBar-active .addPropertyFormContainer .section-listing {
+    padding: 0 0 0 300px;
+}
+
+@media (max-width: 1023px) {
+    .sideBar-active .addPropertyFormContainer .section-listing {
+        padding: 0 0 0 250px;
+        font-size: 0;
+        line-height: 0;
+        letter-spacing: -4px;
+    }
+    .sideBar-active .addPropertyFormContainer .section-listing > * {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .section-listing {
+        position: absolute;
+        top: 100%;
+        left: -10px;
+        right: -10px;
+        z-index: -1;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        overflow: auto;
+        transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
+        -webkit-transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
+        -moz-transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
+        -ms-transition: z-index 0.5s ease, max-height 0.5s ease, opacity 0.5s ease, visibility 0.5s ease, height 0.5s ease;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .section-listing li {
+        display: block;
+    }
+}
+
+.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink:before {
+    background: #39f;
+}
+
+.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a {
+    color: #000;
+    pointer-events: none;
+}
+
+.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a:after {
+    right: 0;
+}
+
+.addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a [class^="icon-"], .addPropertyFormContainer .section-listing li.activeAddPropertyNavLink a [class*="icon-"] {
+    color: #1ab394;
+}
+
+.addPropertyFormContainer .section-listing li:hover:before {
+    background: #39f;
+}
+
+.addPropertyFormContainer .section-listing li:hover a {
+    color: #000;
+}
+
+.addPropertyFormContainer .section-listing li:hover a:after {
+    right: 0;
+}
+
+.addPropertyFormContainer .section-listing li:hover a [class^="icon-"], .addPropertyFormContainer .section-listing li:hover a [class*="icon-"] {
+    color: #1ab394;
+}
+
+.addPropertyFormContainer .section-listing li a {
+    padding: 15px 95px;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+    color: #606060;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+@media (max-width: 1599px) {
+    .addPropertyFormContainer .section-listing li a {
+        padding: 15px 58px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .section-listing li a {
+        padding: 15px 45px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .section-listing li a {
+        padding: 15px 30px;
+    }
+}
+
+.addPropertyFormContainer .section-listing li a:after {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    top: 0;
+    z-index: -1;
+    content: '';
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+}
+
+.addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    margin: -11px 0 0;
+}
+
+@media (max-width: 1599px) {
+    .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
+        left: 25px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
+        left: 15px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
+        left: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .section-listing li a [class^="icon-"], .addPropertyFormContainer .section-listing li a [class*="icon-"] {
+        left: 35px;
+    }
+}
+
+.addPropertyFormContainer .section-listing li a [class^="icon-"]:before, .addPropertyFormContainer .section-listing li a [class*="icon-"]:before {
+    font-size: 25px;
+    line-height: 1;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .section-listing li a [class^="icon-"]:before, .addPropertyFormContainer .section-listing li a [class*="icon-"]:before {
+        font-size: 20px;
+    }
+}
+
+.addPropertyFormContainer .tabset {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    text-transform: capitalize;
+}
+
+.addPropertyFormContainer .tabset > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+}
+
+.addPropertyFormContainer .tabset li {
+    padding: 0 10px 10px;
+}
+
+.addPropertyFormContainer .tabset li.active a {
+    color: #133783;
+}
+
+.addPropertyFormContainer .tabset li.active a .round {
+    background: #133783;
+    border-color: #133783;
+}
+
+.addPropertyFormContainer .tabset li.active a .round:after {
+    display: block;
+}
+
+.addPropertyFormContainer .tabset li a {
+    display: inline-block;
+    vertical-align: top;
+    color: #000;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.4s ease;
+    -webkit-transition: color 0.4s ease;
+    -moz-transition: color 0.4s ease;
+    -ms-transition: color 0.4s ease;
+}
+
+.addPropertyFormContainer .tabset li a .round {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #606060;
+    margin: -2px 4px 0 0;
+    content: '';
+    position: relative;
+    transition: border 0.4s ease;
+    -webkit-transition: border 0.4s ease;
+    -moz-transition: border 0.4s ease;
+    -ms-transition: border 0.4s ease;
+}
+
+.addPropertyFormContainer .tabset li a .round:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    color: #fff;
+    content: "\e903";
+    font-family: 'icomoon';
+    font-size: 10px;
+    line-height: 10px;
+    display: none;
+}
+
+.addPropertyFormContainer .calculatedPrice {
+    color: #363636;
+    font-style: italic;
+    position: relative;
+    padding: 0 0 5px;
+}
+
+.addPropertyFormContainer .tab-content {
+    overflow: hidden;
+}
+
+.addPropertyFormContainer .tab-content .fake-radio {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.addPropertyFormContainer .property-add {
+    padding: 0 0 50px;
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add {
+        padding: 0 0 50px;
+    }
+}
+
+.addPropertyFormContainer .property-add .error-text {
+    display: none;
+    width: 100%;
+    font-size: 12px !important;
+    line-height: 15px !important;
+    font-weight: 600 !important;
+    color: #e14646 !important;
+    padding: 5px 0 0 110px;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .error-text {
+        padding: 3px;
+    }
+}
+
+.addPropertyFormContainer .property-add input[type="text"],
+.addPropertyFormContainer .property-add input[type="search"],
+.addPropertyFormContainer .property-add input[type="number"],
+.addPropertyFormContainer .property-add input[type="email"] {
+    font-size: 12px;
+    line-height: 15px;
+    width: 100%;
+    height: 30px;
+    max-width: 260px;
+    margin: 0 0 0 10px;
+    padding: 6px 10px;
+    outline: none;
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .property-add input[type="text"],
+    .addPropertyFormContainer .property-add input[type="search"],
+    .addPropertyFormContainer .property-add input[type="number"],
+    .addPropertyFormContainer .property-add input[type="email"] {
+        max-width: 185px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .property-add input[type="text"],
+    .addPropertyFormContainer .property-add input[type="search"],
+    .addPropertyFormContainer .property-add input[type="number"],
+    .addPropertyFormContainer .property-add input[type="email"] {
+        max-width: 115px;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add input[type="text"],
+    .addPropertyFormContainer .property-add input[type="search"],
+    .addPropertyFormContainer .property-add input[type="number"],
+    .addPropertyFormContainer .property-add input[type="email"] {
+        max-width: inherit;
+        margin: 0;
+    }
+}
+
+.addPropertyFormContainer .property-add input[type="text"]:focus, .addPropertyFormContainer .property-add input[type="text"]:hover,
+.addPropertyFormContainer .property-add input[type="search"]:focus,
+.addPropertyFormContainer .property-add input[type="search"]:hover,
+.addPropertyFormContainer .property-add input[type="number"]:focus,
+.addPropertyFormContainer .property-add input[type="number"]:hover,
+.addPropertyFormContainer .property-add input[type="email"]:focus,
+.addPropertyFormContainer .property-add input[type="email"]:hover {
+    border: 1px solid #000;
+}
+
+.addPropertyFormContainer .property-add button[type="submit"] {
+    border: 0;
+    padding: 12px 25px;
+    display: block;
+    text-transform: capitalize;
+    width: 250px;
+    margin: 20px auto;
+    font-size: 16px;
+    line-height: 19px;
+    position: relative;
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #58a36f;
+    color: #fff;
+    font-weight: 600;
+    outline: none;
+}
+
+.addPropertyFormContainer .property-add button[type="submit"] [class^="icon"], .addPropertyFormContainer .property-add button[type="submit"] [class*="icon"] {
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    margin: -9px 0 0;
+    transition: right 0.4s ease;
+    -webkit-transition: right 0.4s ease;
+    -moz-transition: right 0.4s ease;
+    -ms-transition: right 0.4s ease;
+}
+
+.addPropertyFormContainer .property-add button[type="submit"] [class^="icon"]:before, .addPropertyFormContainer .property-add button[type="submit"] [class*="icon"]:before {
+    font-size: 12px;
+    line-height: 1;
+}
+
+.addPropertyFormContainer .property-add button[type="submit"]:after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 100%;
+    background: #489ddd;
+    z-index: -1;
+    content: '';
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+}
+
+.addPropertyFormContainer .property-add button[type="submit"]:hover:after {
+    left: 0;
+}
+
+.addPropertyFormContainer .property-add button[type="submit"]:hover [class^="icon"], .addPropertyFormContainer .property-add button[type="submit"]:hover [class*="icon"] {
+    right: 20px;
+}
+
+.addPropertyFormContainer .property-add select {
+    display: inline-block;
+    vertical-align: top;
+    height: 30px;
+}
+
+.addPropertyFormContainer .property-add select:focus, .addPropertyFormContainer .property-add select:hover {
+    border: 1px solid #000;
+}
+
+.addPropertyFormContainer .property-add textarea {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 0 0 9px;
+    width: 100%;
+    height: 120px;
+    max-width: 710px;
+    resize: none;
+    padding: 10px;
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .property-add textarea {
+        max-width: 523px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .property-add textarea {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add textarea {
+        max-width: inherit;
+        margin: 0;
+    }
+}
+
+.addPropertyFormContainer .property-add textarea:hover {
+    border-color: #000;
+}
+
+.addPropertyFormContainer .property-add .title {
+    padding: 2px 0 0;
+    float: left;
+    text-align: right;
+    width: 25%;
+    font-weight: 600;
+    text-transform: capitalize;
+    color: #606060;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .title {
+        float: none;
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 0 0 10px;
+    }
+}
+
+.addPropertyFormContainer .property-add .title:after {
+    display: inline-block;
+    vertical-align: top;
+    content: '\2217';
+    color: #e14646;
+}
+
+.addPropertyFormContainer .property-add .input-holder {
+    float: left;
+    width: 75%;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .input-holder {
+        float: none;
+        width: 100%;
+        display: block;
+    }
+}
+
+.addPropertyFormContainer .property-add .field-holder {
+    overflow: hidden;
+}
+
+.addPropertyFormContainer .property-add .radio-holder {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    text-transform: capitalize;
+}
+
+.addPropertyFormContainer .property-add .radio-holder > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+}
+
+.addPropertyFormContainer .property-add .radio-holder.error .fake-radio {
+    border-color: #e14646;
+}
+
+.addPropertyFormContainer .property-add .radio-holder.error li.error-text {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li {
+    padding: 0 10px 10px;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li.error-text {
+    padding: 5px 0 0;
+    width: auto !important;
+    display: none;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li label {
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    padding: 2px 0 0;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li label .fake-radio,
+.addPropertyFormContainer .property-add .radio-holder li label .fake-label {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li label .fake-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #606060;
+    margin: -2px 0 0;
+    position: relative;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li label .fake-radio:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    color: #fff;
+    content: "\e903";
+    font-family: 'icomoon';
+    font-size: 10px;
+    line-height: 10px;
+    display: none;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li input[type="radio"] {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    top: -999px;
+    left: -999px;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li input[type="radio"]:checked ~ .fake-radio {
+    border: 2px solid #133783;
+    background: #133783;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li input[type="radio"]:checked ~ .fake-radio:after {
+    display: block;
+}
+
+.addPropertyFormContainer .property-add .radio-holder li input[type="radio"]:checked ~ .fake-label {
+    color: #133783;
+}
+
+.addPropertyFormContainer .property-add .layout {
+    padding: 20px 0 5px;
+}
+
+.addPropertyFormContainer .property-add .layout.add {
+    max-width: 885px;
+    margin: 0 auto;
+    overflow: visible;
+    clear: both;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .layout.add {
+        max-width: inherit;
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder {
+    float: left;
+    width: 50%;
+    margin: 0 auto 10px;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder {
+        float: none;
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0 0 20px;
+    }
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder.error .error-text {
+    display: block;
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder.error select,
+.addPropertyFormContainer .property-add .layout .layout-holder.error textarea,
+.addPropertyFormContainer .property-add .layout .layout-holder.error input[type="text"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="search"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="email"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="password"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="number"], .addPropertyFormContainer .property-add .layout .layout-holder.error input[type="tel"] {
+    border-color: #e14646;
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder.add {
+    width: 100%;
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder select {
+    margin: 0 0 0 9px;
+    height: 30px;
+    width: 262px;
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder select {
+        width: 186px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder select {
+        width: 116px;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder select {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+.addPropertyFormContainer .property-add .layout .layout-holder .title {
+    max-width: 95px;
+    width: inherit;
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .property-add .layout .layout-holder .title {
+        max-width: inherit;
+    }
+}
+
+.addPropertyFormContainer .property-add .tab-content {
+    margin: 10px 0 0;
+    padding: 0 0 0 20px;
+}
+
+.addPropertyFormContainer .form-heading {
+    display: block;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    border-bottom: 1px solid #133783;
+    margin: 30px 0 0;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .form-heading {
+        font-size: 14px;
+        line-height: 20px;
+    }
+}
+
+.addPropertyFormContainer .form-heading span {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    background: #133783;
+    padding: 6px 10px;
+}
+
+.addPropertyFormContainer .form-heading span:after {
+    position: absolute;
+    top: -32px;
+    right: -32px;
+    border: 32px solid transparent;
+    border-bottom: 32px solid #133783;
+    border-left: 0;
+    content: '';
+}
+
+.addPropertyFormContainer .feature-block .feature-blockOpener {
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    display: block;
+    margin: 30px auto 0;
+    color: #000;
+    border: 1px solid #000;
+    text-transform: capitalize;
+    font-weight: 600;
+    padding: 10px;
+    transition: color 0.4s ease, background 0.4s ease;
+    -webkit-transition: color 0.4s ease, background 0.4s ease;
+    -moz-transition: color 0.4s ease, background 0.4s ease;
+    -ms-transition: color 0.4s ease, background 0.4s ease;
+}
+
+.addPropertyFormContainer .feature-block .feature-blockOpener.active, .addPropertyFormContainer .feature-block .feature-blockOpener:hover {
+    background: #608ce8;
+    color: #fff;
+}
+
+.addPropertyFormContainer .feature-block .holder {
+    overflow: hidden;
+    padding: 10px 0 0;
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+}
+
+.addPropertyFormContainer .feature-block .holder > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0;
+}
+
+.addPropertyFormContainer .feature-block .holder .features-section-holder {
+    width: 50%;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .feature-block .holder .features-section-holder {
+        width: 100%;
+    }
+}
+
+.addPropertyFormContainer .feature-block .holder .tag {
+    display: block;
+    padding: 10px;
+    text-align: center;
+}
+
+.addPropertyFormContainer .tag {
+    display: block;
+    text-transform: capitalize;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 600;
+}
+
+.addPropertyFormContainer .feature-list {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    position: relative;
+    padding: 0 0 20px;
+}
+
+.addPropertyFormContainer .feature-list > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0;
+}
+
+.addPropertyFormContainer .feature-list:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    content: '';
+    background: #e7e7e7;
+}
+
+.addPropertyFormContainer .feature-list li {
+    padding: 0 10px 15px;
+    width: 50%;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .feature-list li {
+        padding: 0 5px 10px;
+    }
+}
+
+.addPropertyFormContainer .feature-list li label {
+    text-transform: capitalize;
+    cursor: pointer;
+    float: left;
+    width: 35%;
+    padding: 3px 0 0;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .feature-list li label {
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .feature-list li label {
+        float: left;
+    }
+}
+
+.addPropertyFormContainer .feature-list li select,
+.addPropertyFormContainer .feature-list li input[type="text"], .addPropertyFormContainer .feature-list li input[type="search"], .addPropertyFormContainer .feature-list li input[type="email"], .addPropertyFormContainer .feature-list li input[type="password"], .addPropertyFormContainer .feature-list li input[type="number"], .addPropertyFormContainer .feature-list li input[type="tel"] {
+    margin: 0;
+    width: 100%;
+    height: 25px;
+    max-width: inherit;
+    padding: 3px 10px;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.addPropertyFormContainer .feature-list li .input-holder {
+    padding: 0 0 0 10px;
+    width: 65%;
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .feature-list li .input-holder {
+        width: 50%;
+    }
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .feature-list li .input-holder {
+        float: left;
+    }
+}
+
+.addPropertyFormContainer .feature-list li input[type="radio"],
+.addPropertyFormContainer .feature-list li input[type="checkbox"] {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: bottom;
+    margin: 7px 0 0;
+}
+
+.addPropertyFormContainer .image-uploading-area {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -4px;
+    text-align: center;
+    margin: 30px 0 0;
+}
+
+.addPropertyFormContainer .image-uploading-area > * {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+    .addPropertyFormContainer .image-uploading-area {
+        margin: 30px -5px 0;
+    }
+}
+
+.addPropertyFormContainer .image-uploading-area li {
+    width: 16.66%;
+    position: relative;
+    padding: 10px 5px;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .image-uploading-area li {
+        width: 33.33%;
+        padding: 10px 5px;
+    }
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .image-uploading-area li {
+        width: 50%;
+    }
+}
+
+.addPropertyFormContainer .image-uploading-area li.error .error-text {
+    display: block;
+    padding: 3px;
+    text-align: left;
+}
+
+.addPropertyFormContainer .image-uploading-area li.image-loaded .image-holder {
+    opacity: 1;
+    z-index: 9;
+}
+
+.addPropertyFormContainer .image-uploading-area li.image-loaded .picture-name {
+    pointer-events: inherit;
+}
+
+.addPropertyFormContainer .image-uploading-area li:first-child .file-uploader:before {
+    position: absolute;
+    top: 19px;
+    left: -39px;
+    content: 'Main Image';
+    text-transform: capitalize;
+    font-size: 13px;
+    line-height: 16px;
+    padding: 3px;
+    transform: rotate(-39deg);
+    width: 150px;
+    color: #fff;
+    z-index: 999;
+    background: rgba(225, 70, 70, 0.8);
+    word-spacing: 1px;
+}
+
+.addPropertyFormContainer .image-uploading-area li .file-uploader {
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    background: #edf2f8;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+@media (max-width: 1424px) {
+    .addPropertyFormContainer .image-uploading-area li .file-uploader {
+        width: 100%;
+        height: 150px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .addPropertyFormContainer .image-uploading-area li .file-uploader {
+        width: 100%;
+        height: 110px;
+    }
+}
+
+.addPropertyFormContainer .image-uploading-area li .file-uploader:hover:after {
+    color: #58a36f;
+}
+
+.addPropertyFormContainer .image-uploading-area li .file-uploader:after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    content: "\e900";
+    font-family: 'icomoon';
+    font-size: 50px;
+    line-height: 1;
+    z-index: -1;
+    margin: -25px 0 0 -25px;
+    color: #9da2a8;
+    transition: color 0.4s ease;
+    -webkit-transition: color 0.4s ease;
+    -ms-transition: color 0.4s ease;
+    -moz-transition: color 0.4s ease;
+}
+
+@media (max-width: 1023px) {
+    .addPropertyFormContainer .image-uploading-area li .file-uploader:after {
+        font-size: 60px;
+        margin: -30px 0 0 -30px;
+    }
+}
+
+.addPropertyFormContainer .image-uploading-area li .file-uploader input[type="file"] {
+    display: block;
+    overflow: hidden;
+    border: 0;
+    outline: none;
+    opacity: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.addPropertyFormContainer .image-uploading-area li .picture-name {
+    display: block;
+    max-width: inherit;
+    margin: 0;
+    width: 100%;
+    border-width: 0 0 2px;
+    border-style: solid;
+    border-color: #999;
+    height: 50px;
+    font-size: 14px;
+    line-height: 18px;
+    pointer-events: none;
+    transition: border 0.4s ease;
+    -webkit-transition: border 0.4s ease;
+    -ms-transition: border 0.4s ease;
+    -moz-transition: border 0.4s ease;
+}
+
+.addPropertyFormContainer .image-uploading-area li .picture-name:hover, .addPropertyFormContainer .image-uploading-area li .picture-name:focus {
+    border-width: 0 0 3px;
+    border-color: #606060;
+}
+
+.addPropertyFormContainer .image-uploading-area li .image-holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 0;
+    outline: none;
+    overflow: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: z-index 0.9s ease, opacity 0.9s ease;
+    -webkit-transition: z-index 0.9s ease, opacity 0.9s ease;
+    -moz-transition: z-index 0.9s ease, opacity 0.9s ease;
+    -ms-transition: z-index 0.9s ease, opacity 0.9s ease;
+}
+
+.addPropertyFormContainer .image-uploading-area li .image-holder:after {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    content: '';
+    transition: top 0.4s ease;
+    -webkit-transition: top 0.4s ease;
+    -moz-transition: top 0.4s ease;
+    -ms-transition: top 0.4s ease;
+}
+
+.addPropertyFormContainer .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    color: #e14646;
+    text-decoration: none;
+    z-index: 6;
+    font-size: 50px;
+    line-height: 50px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+    -webkit-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+    -ms-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+    -moz-transition: opacity 0.4s ease, visibility 0.4s ease, color 0.4s ease;
+    cursor: pointer;
+    margin: -25px -25px 0 0;
+}
+
+@media (max-width: 1424px) {
+    .addPropertyFormContainer .image-uploading-area li .image-holder .propertyDocumentCloseBtn {
+        font-size: 50px;
+        line-height: 50px;
+    }
+}
+
+.addPropertyFormContainer .image-uploading-area li .image-holder img {
+    width: 100%;
+    height: auto;
+    display: block;
+    height: 100%;
+    border: 0;
+}
+
+.addPropertyFormContainer .image-uploading-area li .image-holder:hover:after {
+    top: 0;
+}
+
+.addPropertyFormContainer .image-uploading-area li .image-holder:hover .propertyDocumentCloseBtn {
+    opacity: 1;
+    visibility: visible;
+}
